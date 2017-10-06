@@ -10,8 +10,10 @@ import javax.swing.JComboBox;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
-public class CallCenter extends JFrame {
+public class Tela extends JFrame {
 
 	private Call atendente1;
 	private Call atendente2;
@@ -20,15 +22,16 @@ public class CallCenter extends JFrame {
 	private TextArea txtArea;
 	private JComboBox listaChamados;
 	private JButton btnLimpar;
+	private JLabel label;
+	private JLabel label_1;
+	private JLabel lblMensagem;
 
-	/**
-	 * Launch the application.
-	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CallCenter frame = new CallCenter();
+					Tela frame = new Tela();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,10 +40,8 @@ public class CallCenter extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public CallCenter() {
+
+	public Tela() {
 		setTitle("Call Center");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 518, 362);
@@ -50,7 +51,7 @@ public class CallCenter extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnCall = new JButton("Call");
-		btnCall.setBounds(177, 37, 89, 23);
+		btnCall.setBounds(23, 83, 89, 23);
 		contentPane.add(btnCall);
 
 		listaChamados = new JComboBox();
@@ -58,12 +59,28 @@ public class CallCenter extends JFrame {
 		contentPane.add(listaChamados);
 
 		txtArea = new TextArea();
-		txtArea.setBounds(10, 123, 482, 190);
+		txtArea.setBounds(10, 206, 482, 107);
 		contentPane.add(txtArea);
 		
 		btnLimpar = new JButton("Limpar");
-		btnLimpar.setBounds(276, 37, 89, 23);
+		btnLimpar.setBounds(23, 117, 89, 23);
 		contentPane.add(btnLimpar);
+		
+		label = new JLabel("");
+		//Alterar o caminho da imagem
+		//label.setIcon(new ImageIcon("C:\\Users\\Lucas\\eclipse-workspace\\ChainOfReponsibility\\ChainOfResponsability\\imagens\\assistente.png"));
+		label.setBounds(170, 83, 100, 100);
+		contentPane.add(label);
+		
+		label_1 = new JLabel("");
+		//Alterar o caminho da imagem
+		//label_1.setIcon(new ImageIcon("C:\\Users\\Lucas\\eclipse-workspace\\ChainOfReponsibility\\ChainOfResponsability\\imagens\\balao.png"));
+		label_1.setBounds(280, 16, 212, 124);
+		contentPane.add(label_1);
+		
+		lblMensagem = new JLabel("Bom dia, posso ajudar!");
+		lblMensagem.setBounds(303, 30, 175, 95);
+		contentPane.add(lblMensagem);
 
 		atendente1 = new CallCenter1();
 		atendente2 = new CallCenter2();
@@ -78,12 +95,14 @@ public class CallCenter extends JFrame {
 				Chamado call = new Chamado(listaChamados.getSelectedIndex());
 				atendente1.requisicao(call);
 				txtArea.setText(call.getLogMensagem());
+				lblMensagem.setText("Mamata!!!");
 			}
 		});
 		
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtArea.setText("");
+				lblMensagem.setText("Bom dia, posso ajudar!");
 			}
 		});
 	}
@@ -105,5 +124,5 @@ public class CallCenter extends JFrame {
 		}
 
 	}
-
+	
 }
